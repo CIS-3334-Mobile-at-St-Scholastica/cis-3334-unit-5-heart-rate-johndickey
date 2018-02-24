@@ -2,6 +2,7 @@ package css.cis3334.heartratetracker;
 
 import android.app.Activity;
 import android.content.Context;
+import android.support.v4.content.ContextCompat;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -80,10 +81,38 @@ public class HeartRateAdapter extends ArrayAdapter<HeartRate> {
 
 
 
+        // fill and format rows
+
         TextView tvPulse=(TextView)view.findViewById(R.id.textviewpulse);
-
         tvPulse.setText(hr.getPulse().toString());
+        TextView tvRange=(TextView)view.findViewById(R.id.textViewRange);
+        tvRange.setText(hr.getRangeDescrtiption());
 
+        if (hr.getRangeName()=="Resting") {
+
+            tvRange.setBackgroundColor(ContextCompat.getColor(context,R.color.colorResting));
+
+        } else if (hr.getRangeName()=="Moderate") {
+
+            tvRange.setBackgroundColor(ContextCompat.getColor(context,R.color.colorModerate));
+
+        } else if (hr.getRangeName()=="Endurance") {
+
+            tvRange.setBackgroundColor(ContextCompat.getColor(context,R.color.colorEndurance));
+
+        } else if (hr.getRangeName()=="Aerobic") {
+
+            tvRange.setBackgroundColor(ContextCompat.getColor(context,R.color.colorAerobic));
+
+        } else if (hr.getRangeName()=="Anaerobic") {
+
+            tvRange.setBackgroundColor(ContextCompat.getColor(context,R.color.colorAnaerobic));
+
+        } else {
+
+            tvRange.setBackgroundColor(ContextCompat.getColor(context, R.color.colorRedzone));
+
+        }
 
 
         return(view);
