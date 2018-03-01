@@ -1,5 +1,6 @@
 package css.cis3334.heartratetracker;
 
+import android.content.Intent;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.View;
@@ -16,6 +17,7 @@ public class MainActivity extends AppCompatActivity {
     ListView lvHeartRates;
     TextView tvSelect;
 
+    public static final String HeartRate_Key = "HeartRate_Key";
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -39,6 +41,10 @@ public class MainActivity extends AppCompatActivity {
 
                 HeartRate hr = (HeartRate) parent.getItemAtPosition(position);
                 tvSelect.setText("You selected: " + hr.toString());
+
+                Intent detailActIntent = new Intent(parent.getContext(), HeartDetailActivity.class);
+                detailActIntent.putExtra(HeartRate_Key, hr);
+                startActivity(detailActIntent);
     }
 });
 
